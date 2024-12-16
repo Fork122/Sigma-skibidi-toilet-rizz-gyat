@@ -27,6 +27,8 @@ public class MusicPlayer : MonoBehaviour
 
     private AudioSource myAud;
 
+    //Make sure object wasn't made already
+    bool started = false;
     //check that there is only one MusicPlayer
     private void Awake()
     {
@@ -44,13 +46,22 @@ public class MusicPlayer : MonoBehaviour
     void Start()
     {
         myAud = GetComponent<AudioSource>();
-
+        //set started to allow music to play now that audiosource exists
+        started = true;
         //play first track
         FindRightTrack();
-        
     }
 
-    private void OnLevelWasLoaded(int level)
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnLevelFinishedLoading;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+    }
+    private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
         
         FindRightTrack();
@@ -59,7 +70,10 @@ public class MusicPlayer : MonoBehaviour
     //This should check if the correct music is playing on any given level, and allow levels that share a track to keep playing rather than start and stop
     private void FindRightTrack()
     {
-        
+        if (!started)
+        {
+            return;
+        }
         foreach (LevelTrack LT in levelTracks)
         {
             if (SceneManager.GetActiveScene().name == LT.LevelName)
