@@ -12,6 +12,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+
+    bool respawning = false;
+
     //speed and movement variables
     public float speed;
     public float airSpeed;
@@ -75,7 +78,10 @@ public class PlayerController : MonoBehaviour
     //Update is called once per frame
     private void Update()
     {
-
+        if (respawning)
+        {
+            return;
+        }
         moveInputH = Input.GetAxisRaw("Horizontal");
         if (isGrounded == true)
         {
@@ -130,6 +136,15 @@ public class PlayerController : MonoBehaviour
     {
         //check for ground
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+
+        if (respawning)
+        {
+            if (isGrounded)
+            {
+                respawning = false;
+            }
+            return;
+        }
 
         //set animators on ground
         myAnim.SetBool("OnGround", isGrounded);
@@ -210,6 +225,8 @@ public class PlayerController : MonoBehaviour
         {
             myRb.velocity = Vector2.zero;
             transform.position = RespawnPoint;
+            respawning = true;
         }
     }
+
 }
