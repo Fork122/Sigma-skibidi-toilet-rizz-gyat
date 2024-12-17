@@ -31,11 +31,18 @@ public class PlayerController : MonoBehaviour
     public float checkRadius;
     public LayerMask whatIsGround;
 
+    //things for wall checking
+    private bool istouchingwall = false;
+    public Transform wallcheck;
+    public float wallcheckRadius;
+    public LayerMask whatIsWall;
+    
     //jump things
     public int extraJumps = 1;
     private int jumps;
     public float jumpForce;
     private bool jumpPressed = true;
+    public float wall_jump_force;
 
     private float jumpTimer = 0;
     public float jumpTime = 0.2f;
@@ -117,6 +124,30 @@ public class PlayerController : MonoBehaviour
             jumpPressed = true;
             jumps--;
         }
+        else if (Input.GetAxisRaw("Jump") == 1 && jumpPressed == false && isGrounded == false && isClimbing == false &&
+                 istouchingwall)
+        {
+            myAud.PlayOneShot(jumpNoise);
+            myRb.drag = airDrag;
+            if ((myRb.velocity.x < 0 && moveInputH > 0) || (myRb.velocity.x > 0 && moveInputH < 0))
+            {
+                myRb.velocity = (Vector2.up * jumpForce);
+            }
+            else
+            {
+                if (facingRight == false)
+                {
+                    myRb.velocity = (Vector2.up * jumpForce) + new Vector2(wall_jump_force, 0);
+                    Flip();
+                }
+                else if (facingRight)
+                {
+                    myRb.velocity = (Vector2.up * jumpForce) - new Vector2(wall_jump_force, 0);
+                    Flip();
+                }
+            }
+            jumpPressed = true;
+        }
         else if(Input.GetAxisRaw("Jump") == 0)
         {
             jumpPressed = false;
@@ -137,6 +168,7 @@ public class PlayerController : MonoBehaviour
         //check for ground
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
+        istouchingwall = Physics2D.OverlapCircle(wallcheck.position, wallcheckRadius, whatIsWall);
         if (respawning)
         {
             if (isGrounded)
