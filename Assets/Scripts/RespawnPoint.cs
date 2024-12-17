@@ -9,6 +9,10 @@ using UnityEngine;
 
 public class RespawnPoint : MonoBehaviour
 {
+    public int offset = 0;
+    public int checkPointNum = 0;
+    public bool active = false;
+
     public Color ActiveColor = Color.green - new Color(0,0,0,0.5f);
     [HideInInspector]
     public Color InactiveColor = Color.cyan - new Color(0, 0, 0, 0.5f);
@@ -35,11 +39,14 @@ public class RespawnPoint : MonoBehaviour
         {
             foreach (RespawnPoint RP in FindObjectsOfType<RespawnPoint>())
             {
+                active = false;
                 RP.mySR.color = RP.InactiveColor;
             }
-
+            active = true;
             mySR.color = ActiveColor;
-            PC.RespawnPoint = transform.position;
+            Vector3 pos = transform.position;
+            pos.y += offset;
+            PC.RespawnPoint = pos;
         }
     }
 }
