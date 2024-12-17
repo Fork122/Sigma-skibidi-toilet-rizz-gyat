@@ -6,7 +6,7 @@ public class Ability : MonoBehaviour
 {
     BoxCollider2D boxCollider;
     SpriteRenderer spriteRenderer;
-    private float switch_cooldown = 0.5f;
+    private float switch_cooldown = 0.15f;
     private float timer = 0;
 
     // Start is called before the first frame update
