@@ -50,6 +50,7 @@ SpriteAtlas:
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
+    - 813f27f0500c9f54a89e0141656d3e5b: 21300000
     - 29173af6ad4f8f34cae2f2ad028ec303: 4413142109597815103
     - 29173af6ad4f8f34cae2f2ad028ec303: -3674992999376901249
     - 29173af6ad4f8f34cae2f2ad028ec303: 4227826887867029099
@@ -156,6 +157,7 @@ SpriteAtlas:
     - f99a3879764308a4d92d87d841829522: -7336076203705889676
     - f99a3879764308a4d92d87d841829522: -4344611882063969491
     - f99a3879764308a4d92d87d841829522: -5241486731584646207
+    - dc1cd62dc326e8f4ba95150ff6d9024c: 21300000
     - 950f927dbc9d7d146bfeab77e560f475: 1671283345461455480
     - 950f927dbc9d7d146bfeab77e560f475: -3638366375080524030
     - 950f927dbc9d7d146bfeab77e560f475: 3774374558072554424
@@ -268,6 +270,7 @@ SpriteAtlas:
     - 9448701fdbdfbdd4bb6d7a8e22c982cb: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 813f27f0500c9f54a89e0141656d3e5b, type: 3}
   - {fileID: 4413142109597815103, guid: 29173af6ad4f8f34cae2f2ad028ec303, type: 3}
   - {fileID: -3674992999376901249, guid: 29173af6ad4f8f34cae2f2ad028ec303, type: 3}
   - {fileID: 4227826887867029099, guid: 29173af6ad4f8f34cae2f2ad028ec303, type: 3}
@@ -374,6 +377,7 @@ SpriteAtlas:
   - {fileID: -7336076203705889676, guid: f99a3879764308a4d92d87d841829522, type: 3}
   - {fileID: -4344611882063969491, guid: f99a3879764308a4d92d87d841829522, type: 3}
   - {fileID: -5241486731584646207, guid: f99a3879764308a4d92d87d841829522, type: 3}
+  - {fileID: 21300000, guid: dc1cd62dc326e8f4ba95150ff6d9024c, type: 3}
   - {fileID: 1671283345461455480, guid: 950f927dbc9d7d146bfeab77e560f475, type: 3}
   - {fileID: -3638366375080524030, guid: 950f927dbc9d7d146bfeab77e560f475, type: 3}
   - {fileID: 3774374558072554424, guid: 950f927dbc9d7d146bfeab77e560f475, type: 3}
@@ -485,6 +489,7 @@ SpriteAtlas:
   - {fileID: 6731733094262721628, guid: d37e19ad10172ab4fb53c4f7e74a4e55, type: 3}
   - {fileID: 21300000, guid: 9448701fdbdfbdd4bb6d7a8e22c982cb, type: 3}
   m_PackedSpriteNamesToIndex:
+  - monochrome_tilemap_transparent_packed
   - FlyingSlimeAttack_8
   - FlyingSlimeAttack_7
   - FlyingSlimeAttack_6
@@ -591,6 +596,7 @@ SpriteAtlas:
   - cavesofgallet_tiles_72
   - cavesofgallet_tiles_8
   - cavesofgallet_tiles_9
+  - monochrome_tilemap_packed
   - rotating_coin_0
   - rotating_coin_1
   - rotating_coin_2
