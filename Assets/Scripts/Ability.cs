@@ -6,6 +6,8 @@ public class Ability : MonoBehaviour
 {
     BoxCollider2D boxCollider;
     SpriteRenderer spriteRenderer;
+    private float switch_cooldown = 0.5f;
+    private float timer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -32,8 +34,13 @@ public class Ability : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (timer <= switch_cooldown)
         {
+            timer += Time.deltaTime;
+        }
+        else if (Input.GetAxisRaw("Fire3") == 1)
+        {
+            timer = 0;
             boxCollider.isTrigger = !boxCollider.isTrigger;
             if (boxCollider.isTrigger)
             {

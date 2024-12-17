@@ -366,7 +366,7 @@ MonoBehaviour:
   wallcheckRadius: 0.1
   whatIsWall:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 2304
   extraJumps: 0
   jumpForce: 8
   wall_jump_force: 6

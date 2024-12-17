@@ -137,12 +137,12 @@ public class PlayerController : MonoBehaviour
             {
                 if (facingRight == false)
                 {
-                    myRb.velocity = (Vector2.up * jumpForce) + new Vector2(wall_jump_force, 0);
+                    myRb.velocity = (Vector2.up * (jumpForce/2)) + new Vector2(wall_jump_force, 0);
                     Flip();
                 }
                 else if (facingRight)
                 {
-                    myRb.velocity = (Vector2.up * jumpForce) - new Vector2(wall_jump_force, 0);
+                    myRb.velocity = (Vector2.up * (jumpForce/2)) - new Vector2(wall_jump_force, 0);
                     Flip();
                 }
             }
