@@ -521,6 +521,11 @@ PrefabInstance:
       propertyPath: ActiveColor.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3541681161798143752, guid: abe4d1f4b05bd5d43a444c2f4f412f45,
+        type: 3}
+      propertyPath: checkPointNum
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3541681161798143756, guid: abe4d1f4b05bd5d43a444c2f4f412f45,
         type: 3}
       propertyPath: m_Name
@@ -684,6 +689,7 @@ GameObject:
   - component: {fileID: 1616923934}
   - component: {fileID: 1616923933}
   - component: {fileID: 1616923932}
+  - component: {fileID: 1616923935}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -765,6 +771,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1616923935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616923931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5259a5a47102e9e469e2edfc932b334b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size:
+  - 8.75
+  - 0
+  x:
+  - 0
+  - 0
+  y:
+  - 0
+  - 0
 --- !u!1001 &1870625432
 PrefabInstance:
   m_ObjectHideFlags: 0
