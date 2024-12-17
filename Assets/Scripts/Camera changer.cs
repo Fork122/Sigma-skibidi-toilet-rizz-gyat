@@ -42,7 +42,7 @@ public class Camerachanger : MonoBehaviour
     void MoveCamera(int arrNum)
     {
         Vector3 pos = transform.position;
-        while(transform.position.x != x[arrNum] && transform.position.y != y[arrNum] && cam.orthographicSize != size[arrNum])
+        while(transform.position.x <= x[arrNum] && transform.position.y <= y[arrNum] && cam.orthographicSize <= size[arrNum])
         {
             pos.x += 1;
             pos.y += 0.2f;
