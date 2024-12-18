@@ -38,7 +38,7 @@ public class Ability : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
-        else if (Input.GetAxisRaw("Fire3") == 1)
+        else if (Input.GetKeyUp(KeyCode.E))
         {
             timer = 0;
             boxCollider.isTrigger = !boxCollider.isTrigger;
