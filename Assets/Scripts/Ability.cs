@@ -38,7 +38,7 @@ public class Ability : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
-        else if (Input.GetKeyUp(KeyCode.E))
+        else if (Input.GetButtonUp("Interact"))
         {
             timer = 0;
             boxCollider.isTrigger = !boxCollider.isTrigger;
