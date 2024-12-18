@@ -39,7 +39,7 @@ public class RespawnPoint : MonoBehaviour
         {
             foreach (RespawnPoint RP in FindObjectsOfType<RespawnPoint>())
             {
-                active = false;
+                RP.active = false;
                 RP.mySR.color = RP.InactiveColor;
             }
             active = true;

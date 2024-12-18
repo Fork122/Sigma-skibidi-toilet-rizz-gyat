@@ -785,13 +785,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size:
   - 8.75
-  - 0
+  - 16
   x:
   - 0
-  - 0
+  - 40
   y:
   - 0
-  - 0
+  - 7
+  SpeedOfCamera: 0.1
 --- !u!1001 &1870625432
 PrefabInstance:
   m_ObjectHideFlags: 0

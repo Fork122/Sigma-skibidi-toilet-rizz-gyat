@@ -9,6 +9,8 @@ public class Camerachanger : MonoBehaviour
     public float[] size;
     public float[] x;
     public float[] y;
+    public float SpeedOfCamera = 0.1f;
+    float timer;
     int posNum;
     GameObject player;
     Camera cam;
@@ -37,29 +39,42 @@ public class Camerachanger : MonoBehaviour
                 if(posNum != RP.checkPointNum)
                 {
                     posNum = RP.checkPointNum;
-                    MoveCamera(posNum);
+                    StartCoroutine(MoveCamera(posNum));
                     playerController.RemoveControls(true);
                 }
             }
         }
     }
 
-    void MoveCamera(int arrNum)
+    IEnumerator MoveCamera(int arrNum)
     {
-            Debug.Log(transform.position);
-            Debug.Log(cam.orthographicSize);
-            Debug.Log(arrNum);
-            Debug.Log(x[arrNum]);
-            Debug.Log(y[arrNum]);
-            Debug.Log(size[arrNum]);
         Vector3 pos = transform.position;
-        while(transform.position.x <= x[arrNum] && transform.position.y <= y[arrNum] && cam.orthographicSize <= size[arrNum])
+        while(transform.position.x <= x[arrNum] || transform.position.y <= y[arrNum] || cam.orthographicSize <= size[arrNum])
         {
-            
-            pos.x += 1;
-            pos.y += 0.2f;
-            transform.position = pos;
-            cam.orthographicSize += 0.2f;
+            if(timer <= SpeedOfCamera)
+            {
+                timer += Time.deltaTime;
+                
+            }
+            else
+            {
+                timer = 0;
+                if(transform.position.x <= x[arrNum])
+                {
+                    pos.x += 0.2f;
+                    transform.position = pos;
+                }
+                if (transform.position.y <= y[arrNum])
+                {
+                    pos.y += 0.2f;
+                    transform.position = pos;
+                }
+                if(cam.orthographicSize <= size[arrNum])
+                {
+                    cam.orthographicSize += 0.2f;
+                }
+            }
+            yield return null;
         }
         playerController.RemoveControls(false);
     }
