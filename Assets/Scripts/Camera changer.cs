@@ -9,6 +9,8 @@ public class Camerachanger : MonoBehaviour
     public float[] size;
     public float[] x;
     public float[] y;
+    public float SpeedOfCamera = 0.1f;
+    float timer;
     int posNum;
     GameObject player;
     Camera cam;
@@ -46,20 +48,22 @@ public class Camerachanger : MonoBehaviour
 
     void MoveCamera(int arrNum)
     {
-            Debug.Log(transform.position);
-            Debug.Log(cam.orthographicSize);
-            Debug.Log(arrNum);
-            Debug.Log(x[arrNum]);
-            Debug.Log(y[arrNum]);
-            Debug.Log(size[arrNum]);
         Vector3 pos = transform.position;
         while(transform.position.x <= x[arrNum] && transform.position.y <= y[arrNum] && cam.orthographicSize <= size[arrNum])
         {
+            if(timer < SpeedOfCamera)
+            {
+                timer += Time.deltaTime;
+            }
+            else
+            {
+                timer = 0;
+                pos.x += 1;
+                pos.y += 0.2f;
+                transform.position = pos;
+                cam.orthographicSize += 0.2f;
+            }
             
-            pos.x += 1;
-            pos.y += 0.2f;
-            transform.position = pos;
-            cam.orthographicSize += 0.2f;
         }
         playerController.RemoveControls(false);
     }
