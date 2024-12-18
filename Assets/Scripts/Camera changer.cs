@@ -12,6 +12,7 @@ public class Camerachanger : MonoBehaviour
     int posNum;
     GameObject player;
     Camera cam;
+    PlayerController playerController;
     private void Start()
     {
         if(player == null)
@@ -21,6 +22,10 @@ public class Camerachanger : MonoBehaviour
         if(cam == null)
         {
             cam = Camera.main;
+        }
+        if(playerController == null)
+        {
+            playerController = player.GetComponent<PlayerController>();
         }
     }
     void FixedUpdate()
@@ -33,7 +38,7 @@ public class Camerachanger : MonoBehaviour
                 {
                     posNum = RP.checkPointNum;
                     MoveCamera(posNum);
-                    player.SetActive(false);
+                    playerController.RemoveControls(true);
                 }
             }
         }
@@ -41,14 +46,21 @@ public class Camerachanger : MonoBehaviour
 
     void MoveCamera(int arrNum)
     {
+            Debug.Log(transform.position);
+            Debug.Log(cam.orthographicSize);
+            Debug.Log(arrNum);
+            Debug.Log(x[arrNum]);
+            Debug.Log(y[arrNum]);
+            Debug.Log(size[arrNum]);
         Vector3 pos = transform.position;
         while(transform.position.x <= x[arrNum] && transform.position.y <= y[arrNum] && cam.orthographicSize <= size[arrNum])
         {
+            
             pos.x += 1;
             pos.y += 0.2f;
             transform.position = pos;
             cam.orthographicSize += 0.2f;
         }
-        
+        playerController.RemoveControls(false);
     }
 }
