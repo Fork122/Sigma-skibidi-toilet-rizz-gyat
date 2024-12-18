@@ -9,7 +9,7 @@ public class Camerachanger : MonoBehaviour
     public float[] size;
     public float[] x;
     public float[] y;
-    public float SpeedOfCamera = 0.1f;
+    public float SpeedOfCamera = 0.01f;
     float timer;
     int posNum;
     GameObject player;
@@ -48,8 +48,10 @@ public class Camerachanger : MonoBehaviour
 
     IEnumerator MoveCamera(int arrNum)
     {
-        Vector3 pos = transform.position;
-        while(transform.position.x <= x[arrNum] || transform.position.y <= y[arrNum] || cam.orthographicSize <= size[arrNum])
+        Vector3 targetPos = new Vector3(x[arrNum], y[arrNum], transform.position.z);
+
+        
+        while(transform.position != targetPos)
         {
             if(timer <= SpeedOfCamera)
             {
@@ -59,23 +61,15 @@ public class Camerachanger : MonoBehaviour
             else
             {
                 timer = 0;
-                if(transform.position.x <= x[arrNum])
-                {
-                    pos.x += 0.2f;
-                    transform.position = pos;
-                }
-                if (transform.position.y <= y[arrNum])
-                {
-                    pos.y += 0.2f;
-                    transform.position = pos;
-                }
                 if(cam.orthographicSize <= size[arrNum])
                 {
-                    cam.orthographicSize += 0.2f;
+                    cam.orthographicSize += 0.01f;
                 }
             }
             yield return null;
+            transform.position = Vector3.Lerp(transform.position, targetPos, 5);
         }
         playerController.RemoveControls(false);
     }
+        
 }
