@@ -39,31 +39,42 @@ public class Camerachanger : MonoBehaviour
                 if(posNum != RP.checkPointNum)
                 {
                     posNum = RP.checkPointNum;
-                    MoveCamera(posNum);
+                    StartCoroutine(MoveCamera(posNum));
                     playerController.RemoveControls(true);
                 }
             }
         }
     }
 
-    void MoveCamera(int arrNum)
+    IEnumerator MoveCamera(int arrNum)
     {
         Vector3 pos = transform.position;
-        while(transform.position.x <= x[arrNum] && transform.position.y <= y[arrNum] && cam.orthographicSize <= size[arrNum])
+        while(transform.position.x <= x[arrNum] || transform.position.y <= y[arrNum] || cam.orthographicSize <= size[arrNum])
         {
-            if(timer < SpeedOfCamera)
+            if(timer <= SpeedOfCamera)
             {
                 timer += Time.deltaTime;
+                
             }
             else
             {
                 timer = 0;
-                pos.x += 1;
-                pos.y += 0.2f;
-                transform.position = pos;
-                cam.orthographicSize += 0.2f;
+                if(transform.position.x <= x[arrNum])
+                {
+                    pos.x += 0.2f;
+                    transform.position = pos;
+                }
+                if (transform.position.y <= y[arrNum])
+                {
+                    pos.y += 0.2f;
+                    transform.position = pos;
+                }
+                if(cam.orthographicSize <= size[arrNum])
+                {
+                    cam.orthographicSize += 0.2f;
+                }
             }
-            
+            yield return null;
         }
         playerController.RemoveControls(false);
     }
