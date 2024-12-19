@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
     // Camera Restrictions
     public Vector2 screenBounds;
     private float playerHalfWidth;
+    public GameObject deathZone;
 
     // Start is called before the first frame update
     void Start()
@@ -96,10 +97,14 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // Camera Restrictions
-        float clampedX = Mathf.Clamp(transform.position.x, (Camera.main.transform.position.x * 2) - screenBounds.x + playerHalfWidth, screenBounds.x - playerHalfWidth);
+        float clampedX = Mathf.Clamp(transform.position.x, (Camera.main.transform.position.x * 2) + -screenBounds.x + playerHalfWidth, screenBounds.x - playerHalfWidth);
+        float clampedY = Mathf.Clamp(transform.position.y, -10000, screenBounds.y - playerHalfWidth);
         Vector3 pos = transform.position;
         pos.x = clampedX;
+        pos.y = clampedY;
         transform.position = pos;
+        pos = new Vector3(Camera.main.transform.position.x, (Camera.main.transform.position.y * 2) + -screenBounds.y - 1, Camera.main.transform.position.z);
+        deathZone.transform.position = pos;
 
         // Player Controller Related
         if (respawning)
