@@ -65,6 +65,7 @@ public class Camerachanger : MonoBehaviour
             transform.position = Vector3.Lerp(startPos, targetPos, percentageCompleate);
         }
         playerController.RemoveControls(false);
+        playerController.screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
     }
         
 }

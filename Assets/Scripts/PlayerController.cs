@@ -69,11 +69,20 @@ public class PlayerController : MonoBehaviour
 
     //animation
     private Animator myAnim;
-    
+
+
+    // Camera Restrictions
+    public Vector2 screenBounds;
+    private float playerHalfWidth;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Camera Restrictions
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        playerHalfWidth = GetComponent<SpriteRenderer>().bounds.extents.x;
+
+        // Player controller related
         myRb = GetComponent<Rigidbody2D>();
         myAud = GetComponent<AudioSource>();
         myAnim = GetComponent<Animator>();
@@ -86,6 +95,13 @@ public class PlayerController : MonoBehaviour
     //Update is called once per frame
     private void Update()
     {
+        // Camera Restrictions
+        float clampedX = Mathf.Clamp(transform.position.x, (Camera.main.transform.position.x * 2) - screenBounds.x + playerHalfWidth, screenBounds.x - playerHalfWidth);
+        Vector3 pos = transform.position;
+        pos.x = clampedX;
+        transform.position = pos;
+
+        // Player Controller Related
         if (respawning)
         {
             return;
