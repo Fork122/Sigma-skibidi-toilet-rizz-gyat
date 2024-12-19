@@ -367,6 +367,7 @@ MonoBehaviour:
   whatIsWall:
     serializedVersion: 2
     m_Bits: 2304
+  wall_slide_drag: 4
   extraJumps: 0
   jumpForce: 8
   wall_jump_force: 6

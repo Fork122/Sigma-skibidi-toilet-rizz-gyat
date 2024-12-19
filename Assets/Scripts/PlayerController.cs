@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     public Transform wallcheck;
     public float wallcheckRadius;
     public LayerMask whatIsWall;
+    public float wall_slide_drag;
     
     //jump things
     public int extraJumps = 1;
@@ -94,6 +95,37 @@ public class PlayerController : MonoBehaviour
         {
             jumps = extraJumps;
         }
+
+        if (istouchingwall)
+        {
+            if (facingRight)
+            {
+                print("Touching Wall and facing Right");
+                //it is facing right
+                if (Input.GetAxisRaw("Horizontal") > 0)
+                {
+                    myRb.drag = groundDrag * wall_slide_drag;
+                }
+                else
+                {
+                        myRb.drag = groundDrag;
+                }
+            }
+
+            else if (!facingRight)
+            {
+                print("Touching Wall and facing Left");
+                //it is facing left
+                if (Input.GetAxisRaw("Horizontal") < 0)
+                {
+                    myRb.drag = groundDrag * wall_slide_drag;
+                }
+                else
+                {
+                    myRb.drag = groundDrag;
+                }
+            }
+        }
         //check if jump can be triggered
         if (Input.GetAxisRaw("Jump") == 1 && jumpPressed == false && isGrounded == true && isClimbing == false)
         {
@@ -124,6 +156,7 @@ public class PlayerController : MonoBehaviour
             jumpPressed = true;
             jumps--;
         }
+        //Wall Jump
         else if (Input.GetAxisRaw("Jump") == 1 && jumpPressed == false && isGrounded == false && isClimbing == false &&
                  istouchingwall)
         {
