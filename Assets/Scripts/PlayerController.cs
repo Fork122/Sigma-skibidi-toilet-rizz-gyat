@@ -112,36 +112,7 @@ public class PlayerController : MonoBehaviour
             jumps = extraJumps;
         }
 
-        if (istouchingwall)
-        {
-            if (facingRight)
-            {
-                print("Touching Wall and facing Right");
-                //it is facing right
-                if (Input.GetAxisRaw("Horizontal") > 0)
-                {
-                    myRb.drag = groundDrag * wall_slide_drag;
-                }
-                else
-                {
-                        myRb.drag = groundDrag;
-                }
-            }
-
-            else if (!facingRight)
-            {
-                print("Touching Wall and facing Left");
-                //it is facing left
-                if (Input.GetAxisRaw("Horizontal") < 0)
-                {
-                    myRb.drag = groundDrag * wall_slide_drag;
-                }
-                else
-                {
-                    myRb.drag = groundDrag;
-                }
-            }
-        }
+       
         //check if jump can be triggered
         if (Input.GetAxisRaw("Jump") == 1 && jumpPressed == false && isGrounded == true && isClimbing == false)
         {
@@ -209,6 +180,31 @@ public class PlayerController : MonoBehaviour
             myRb.velocity = (Vector2.up * jumpForce) + new Vector2(myRb.velocity.x, 0);
             jumpPressed = true;
         }
+        
+        if (istouchingwall)
+        {
+            if (facingRight)
+            {
+                print("Touching Wall and facing Right");
+                //it is facing right
+                if (Input.GetAxisRaw("Horizontal") > 0)
+                {
+                    myRb.drag = wall_slide_drag;
+                }
+            }
+
+            else if (!facingRight)
+            {
+                print("Touching Wall and facing Left");
+                //it is facing left
+                if (Input.GetAxisRaw("Horizontal") < 0)
+                {
+                    myRb.drag = wall_slide_drag;
+                }
+            }
+        }
+        
+        
     }
 
     // FixedUpdate is called once per physics frame
@@ -288,6 +284,29 @@ public class PlayerController : MonoBehaviour
         else if(facingRight == true && moveInputH < 0)
         {
             Flip();
+        }
+        
+        if (istouchingwall)
+        {
+            if (facingRight)
+            {
+                print("Touching Wall and facing Right");
+                //it is facing right
+                if (Input.GetAxisRaw("Horizontal") > 0)
+                {
+                    myRb.drag = wall_slide_drag;
+                }
+            }
+
+            else if (!facingRight)
+            {
+                print("Touching Wall and facing Left");
+                //it is facing left
+                if (Input.GetAxisRaw("Horizontal") < 0)
+                {
+                    myRb.drag = wall_slide_drag;
+                }
+            }
         }
 
     }
