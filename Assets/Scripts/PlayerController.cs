@@ -75,12 +75,14 @@ public class PlayerController : MonoBehaviour
     public Vector2 screenBounds;
     private float playerHalfWidth;
     public GameObject deathZone;
+    public Vector3 deathZonePos;
 
     // Start is called before the first frame update
     void Start()
     {
         // Camera Restrictions
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        deathZonePos = new Vector3(Camera.main.transform.position.x, (Camera.main.transform.position.y * 2) + -screenBounds.y - 1, Camera.main.transform.position.z);
         playerHalfWidth = GetComponent<SpriteRenderer>().bounds.extents.x;
 
         // Player controller related
@@ -103,8 +105,7 @@ public class PlayerController : MonoBehaviour
         pos.x = clampedX;
         pos.y = clampedY;
         transform.position = pos;
-        pos = new Vector3(Camera.main.transform.position.x, (Camera.main.transform.position.y * 2) + -screenBounds.y - 1, Camera.main.transform.position.z);
-        deathZone.transform.position = pos;
+        deathZone.transform.position =  new Vector3(Camera.main.transform.position.x, (Camera.main.transform.position.y * 2) - screenBounds.y - 3, 0);
 
         // Player Controller Related
         if (respawning)

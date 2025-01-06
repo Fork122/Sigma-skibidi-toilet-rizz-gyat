@@ -42,7 +42,6 @@ public class Camerachanger : MonoBehaviour
                 {
                     posNum = RP.checkPointNum;
                     StartCoroutine(MoveCamera(posNum));
-                    playerController.RemoveControls(true);
                 }
             }
         }
@@ -54,8 +53,7 @@ public class Camerachanger : MonoBehaviour
         Vector3 startPos = transform.position;
         Vector3 camSizeStartPos = new Vector3(cam.orthographicSize, 0, 0);
         Vector3 camSizeEndPos = new Vector3(size[arrNum], 0, 0);
-
-        while (transform.position != targetPos)
+        while (transform.position != targetPos || cam.orthographicSize != size[arrNum])
         {
             yield return null;
             elapsedTime += Time.deltaTime;
@@ -63,9 +61,11 @@ public class Camerachanger : MonoBehaviour
             Vector3 tempVar = Vector3.Lerp(camSizeStartPos, camSizeEndPos, percentageCompleate);
             cam.orthographicSize = tempVar.x;
             transform.position = Vector3.Lerp(startPos, targetPos, percentageCompleate);
+            playerController.screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+            playerController.deathZonePos = new Vector3(Camera.main.transform.position.x, (Camera.main.transform.position.y * 2) + -playerController.screenBounds.y - 1, Camera.main.transform.position.z);
         }
-        playerController.RemoveControls(false);
-        playerController.screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        print("removing");
+
     }
         
 }
