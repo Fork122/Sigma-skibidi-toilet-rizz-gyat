@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
-  airSpeed: 25
+  airSpeed: 50
   groundCheck: {fileID: 8397047255048113365}
   checkRadius: 0.1
   whatIsGround:
@@ -302,12 +302,12 @@ MonoBehaviour:
     m_Bits: 2304
   wall_slide_drag: 10
   extraJumps: 0
-  jumpForce: 8
+  jumpForce: 20
   wall_jump_force: 6
-  jumpTime: 0.3
-  gravityScale: 5
+  jumpTime: 0.1
+  gravityScale: 10
   groundDrag: 10
-  airDrag: 0.3
+  airDrag: 5
   jumpNoise: {fileID: 8300000, guid: 39e815db8f7692a44ba7653e4d249281, type: 3}
   whatIsLadder:
     serializedVersion: 2
@@ -317,6 +317,7 @@ MonoBehaviour:
   RespawnPoint: {x: 0, y: 0, z: 0}
   screenBounds: {x: 0, y: 0}
   deathZone: {fileID: 0}
+  deathZonePos: {x: 0, y: 0, z: 0}
 --- !u!61 &1117263842901873434
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -380,9 +381,12 @@ MonoBehaviour:
   animationDuration: 0.25
   canBeOverwritten: 0
   playOnStart: 0
+  playsEveryTime: 1
+  chanceToPlay: 100
   initialScale: 1
   maximumScale: 1.3
   resetToInitialScaleAfterAnimation: 1
+  reverseAnimationCurveAfterPlaying: 0
   squashAndStretchCurve:
     serializedVersion: 2
     m_Curve:
@@ -416,3 +420,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  looping: 0
+  loopingDelay: 0.5
