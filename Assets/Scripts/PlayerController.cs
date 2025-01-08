@@ -67,9 +67,6 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public Vector3 RespawnPoint = new Vector3();
 
-    //animation
-    private Animator myAnim;
-
 
     // Camera Restrictions
     public Vector2 screenBounds;
@@ -88,7 +85,6 @@ public class PlayerController : MonoBehaviour
         // Player controller related
         myRb = GetComponent<Rigidbody2D>();
         myAud = GetComponent<AudioSource>();
-        myAnim = GetComponent<Animator>();
 
         jumps = extraJumps;
 
@@ -229,9 +225,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        //set animators on ground
-        myAnim.SetBool("OnGround", isGrounded);
-
         //ladder things
 
         moveInputV = Input.GetAxisRaw("Vertical") + Input.GetAxisRaw("Jump");
@@ -264,15 +257,6 @@ public class PlayerController : MonoBehaviour
         
         //horizontal movement
         moveInputH = Input.GetAxisRaw("Horizontal");
-        //animator settings
-        if(moveInputH == 0)
-        {
-            myAnim.SetBool("Moving", false);
-        }
-        else
-        {
-            myAnim.SetBool("Moving", true);
-        }
 
         if (isGrounded && !jumpPressed || isClimbing)
         {
