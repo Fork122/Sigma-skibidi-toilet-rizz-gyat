@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Ability : MonoBehaviour
 {
@@ -8,10 +9,13 @@ public class Ability : MonoBehaviour
     SpriteRenderer spriteRenderer;
     private float switch_cooldown = 0.15f;
     private float timer = 0;
+    private int layer;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        layer = gameObject.layer;
         if (spriteRenderer == null)
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
@@ -40,6 +44,7 @@ public class Ability : MonoBehaviour
         }
         else if (Input.GetButtonUp("Interact"))
         {
+
             timer = 0;
             boxCollider.isTrigger = !boxCollider.isTrigger;
             if (boxCollider.isTrigger)
@@ -49,7 +54,7 @@ public class Ability : MonoBehaviour
             }
             if (!boxCollider.isTrigger)
             {
-                gameObject.layer = 8;
+                gameObject.layer = layer;
                 spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
             }
         }
