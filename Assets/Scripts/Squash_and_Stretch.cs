@@ -8,7 +8,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace ChristinaCreatesGames.Animations
+namespace ErikHelmers
 {
     public class SquashAndStretch : MonoBehaviour
     {
