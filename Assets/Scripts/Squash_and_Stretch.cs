@@ -7,6 +7,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.TextCore;
 
 namespace ErikHelmers
 {
@@ -15,6 +16,13 @@ namespace ErikHelmers
         [Header("Notes")] 
         [SerializeField, Multiline(2)] private string notes;
 
+        
+        [Header("Setup Settings")]
+        [SerializeField] private GameObject Player;
+        private Rigidbody2D myRigidBody2D;
+        private int direction;
+        private PlayerController pc_script;
+        
         [Header("Squash and Stretch Core")] 
         [SerializeField, Tooltip("Defaults to current GO if not set.")] private Transform transformToAffect;
         [SerializeField] private SquashStretchAxis axisToAffect = SquashStretchAxis.Y;
@@ -72,9 +80,11 @@ namespace ErikHelmers
             if (transformToAffect == null)
                 transformToAffect = transform;
 
+            myRigidBody2D = Player.GetComponent<Rigidbody2D>();
             _initialScaleVector = transformToAffect.localScale;
             _loopingDelayWaitForSeconds = new WaitForSeconds(loopingDelay);
         }
+        
 
         public static void SquashAndStretchAllObjectsLikeThis()
         {
@@ -98,6 +108,7 @@ namespace ErikHelmers
 
         private void Start()
         {
+            pc_script = Player.GetComponent<PlayerController>();
             if (playOnStart)
                 CheckForAndStartCoroutine();
         }
@@ -111,7 +122,7 @@ namespace ErikHelmers
             CheckForAndStartCoroutine();
         }
         
-        private void CheckForAndStartCoroutine()
+        public void CheckForAndStartCoroutine()
         {
             if (axisToAffect == SquashStretchAxis.None)
             {
@@ -123,7 +134,14 @@ namespace ErikHelmers
            {
                StopCoroutine(_squashAndStretchCoroutine);
                if (playsEveryTime && resetToInitialScaleAfterAnimation)
-                   transformToAffect.localScale = _initialScaleVector;
+               {
+                   if (pc_script.facingRight)
+                       transformToAffect.localScale = _initialScaleVector;
+                   else
+                   {
+                       transformToAffect.localScale = new Vector3(_initialScaleVector.x *-1, _initialScaleVector.y, _initialScaleVector.z);
+                   }
+               }
            }
 
             _squashAndStretchCoroutine = StartCoroutine(SquashAndStretchEffect());
@@ -153,6 +171,7 @@ namespace ErikHelmers
 
                 while (elapsedTime < animationDuration)
                 {
+                    direction = (int)(myRigidBody2D.velocity.x / Mathf.Abs(myRigidBody2D.velocity.x));
                     elapsedTime += Time.deltaTime;
                     
                     float curvePosition;
@@ -183,14 +202,26 @@ namespace ErikHelmers
                         modifiedScale.z = originalScale.z * remappedValue;
                     else
                         modifiedScale.z = originalScale.z / remappedValue;
-
-                    transformToAffect.localScale = modifiedScale;
+                    
+                    if (pc_script.facingRight)
+                        transformToAffect.localScale = modifiedScale;
+                    else
+                    {
+                        transformToAffect.localScale = new Vector3(modifiedScale.x *-1, modifiedScale.y, modifiedScale.z);
+                    }
 
                     yield return null;
                 }
 
                 if (resetToInitialScaleAfterAnimation)
-                    transformToAffect.localScale = originalScale;
+                {
+                    if (pc_script.facingRight)
+                        transformToAffect.localScale = originalScale;
+                    else
+                    {
+                        transformToAffect.localScale = new Vector3(originalScale.x * -1, originalScale.y, originalScale.z);
+                    }
+                }
                 
                 if (looping)
                 {

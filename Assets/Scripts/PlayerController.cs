@@ -6,6 +6,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using ErikHelmers;
 using UnityEngine;
 
 
@@ -23,10 +24,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D myRb;
 
     //used for checking what direction to be flipped
-    private bool facingRight = true;
+    public bool facingRight = true;
 
     //things for ground checking
     private bool isGrounded = false;
+    private bool isGroundedLastFrame = false;
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask whatIsGround;
@@ -55,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
     private AudioSource myAud;
     public AudioClip jumpNoise;
+    
+    public GameObject land_anim_object;
 
     //ladder things
     private bool isClimbing;
@@ -74,7 +78,7 @@ public class PlayerController : MonoBehaviour
     public GameObject deathZone;
     public Vector3 deathZonePos;
 
-
+    
     public GameObject item_with_sr;
     // Start is called before the first frame update
     void Start()
@@ -91,11 +95,18 @@ public class PlayerController : MonoBehaviour
         jumps = extraJumps;
 
         RespawnPoint = transform.position;
+        
+        if (land_anim_object == null)
+            land_anim_object = this.gameObject;
     }
 
     //Update is called once per frame
     private void Update()
     {
+        if (facingRight)
+            PlayerPrefs.SetInt("player_facing_right", 1);
+        else if (facingRight == false)
+            PlayerPrefs.SetInt("player_facing_right", 0);
         // Camera Restrictions
         float clampedX = Mathf.Clamp(transform.position.x, (Camera.main.transform.position.x * 2) + -screenBounds.x + playerHalfWidth, screenBounds.x - playerHalfWidth);
         float clampedY = Mathf.Clamp(transform.position.y, -10000, screenBounds.y - playerHalfWidth);
@@ -111,9 +122,9 @@ public class PlayerController : MonoBehaviour
             return;
         }
         moveInputH = Input.GetAxisRaw("Horizontal");
-        if (isGrounded == true)
+        if (isGrounded == true && isGroundedLastFrame == false)
         {
-            jumps = extraJumps;
+            land_anim_object.GetComponent<SquashAndStretch>().CheckForAndStartCoroutine();
         }
 
        
@@ -124,10 +135,12 @@ public class PlayerController : MonoBehaviour
             myRb.drag = airDrag;
             if ((myRb.velocity.x < 0 && moveInputH > 0) || (myRb.velocity.x > 0 && moveInputH < 0))
             {
+                this.gameObject.GetComponent<SquashAndStretch>().CheckForAndStartCoroutine();
                 myRb.velocity = (Vector2.up * jumpForce);
             }
             else
             {
+                this.gameObject.GetComponent<SquashAndStretch>().CheckForAndStartCoroutine();
                 myRb.velocity = (Vector2.up * jumpForce) + new Vector2(myRb.velocity.x, 0);
             }
             jumpPressed = true;
@@ -138,10 +151,12 @@ public class PlayerController : MonoBehaviour
             myRb.drag = airDrag;
             if ((myRb.velocity.x < 0 && moveInputH > 0) || (myRb.velocity.x > 0 && moveInputH < 0))
             {
+                //this.gameObject.GetComponent<SquashAndStretch>().CheckForAndStartCoroutine();
                 myRb.velocity = (Vector2.up * jumpForce);
             }
             else
             {
+                //this.gameObject.GetComponent<SquashAndStretch>().CheckForAndStartCoroutine();
                 myRb.velocity = (Vector2.up * jumpForce) + new Vector2(myRb.velocity.x, 0);
             }
             jumpPressed = true;
@@ -161,13 +176,13 @@ public class PlayerController : MonoBehaviour
             {
                 if (facingRight == false)
                 {
+                    //this.gameObject.GetComponent<SquashAndStretch>().CheckForAndStartCoroutine();
                     myRb.velocity = (Vector2.up * jumpForce) + new Vector2(wall_jump_force, 0);
-                    Flip();
                 }
                 else if (facingRight)
                 {
+                    //this.gameObject.GetComponent<SquashAndStretch>().CheckForAndStartCoroutine();
                     myRb.velocity = (Vector2.up * jumpForce) - new Vector2(wall_jump_force, 0);
-                    Flip();
                 }
             }
             jumpPressed = true;
@@ -208,7 +223,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         
-        
+        isGroundedLastFrame = isGrounded;
     }
 
     // FixedUpdate is called once per physics frame
@@ -222,6 +237,7 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded)
             {
+                myRb.drag = airDrag;
                 RemoveControls(false);
             }
             return;
@@ -277,12 +293,10 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
-        
         if (istouchingwall)
         {
             if (facingRight)
             {
-                print("Touching Wall and facing Right");
                 //it is facing right
                 if (Input.GetAxisRaw("Horizontal") > 0)
                 {
@@ -292,7 +306,6 @@ public class PlayerController : MonoBehaviour
 
             else if (!facingRight)
             {
-                print("Touching Wall and facing Left");
                 //it is facing left
                 if (Input.GetAxisRaw("Horizontal") < 0)
                 {
@@ -306,9 +319,6 @@ public class PlayerController : MonoBehaviour
     void Flip()
     {
         facingRight = !facingRight;
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
-        transform.localScale = Scaler;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
