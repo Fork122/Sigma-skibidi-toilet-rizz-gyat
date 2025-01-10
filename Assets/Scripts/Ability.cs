@@ -7,7 +7,7 @@ public class Ability : MonoBehaviour
 {
     BoxCollider2D boxCollider;
     SpriteRenderer spriteRenderer;
-    private float switch_cooldown = 0.15f;
+    private float switch_cooldown = 0.05f;
     private float timer = 0;
     private int layer;
     
