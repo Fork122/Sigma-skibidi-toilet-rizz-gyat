@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7792988035009534888}
   m_Layer: 0
   m_Name: Landing
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1796143966257947772}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.35832545, y: -0.091209, z: 0.16579473}
+  m_LocalPosition: {x: 0, y: 0, z: 0.16579473}
   m_LocalScale: {x: 1.6666665, y: 1.6666665, z: 1.6666665}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46,15 +46,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notes: Landing Anim
+  Player: {fileID: 8397047256095260017}
   transformToAffect: {fileID: 1984762054350624464}
-  axisToAffect: 2
+  axisToAffect: 3
   animationDuration: 0.25
   canBeOverwritten: 0
   playOnStart: 0
   playsEveryTime: 1
   chanceToPlay: 100
   initialScale: 1
-  maximumScale: 0.65
+  maximumScale: 0.8
   resetToInitialScaleAfterAnimation: 1
   reverseAnimationCurveAfterPlaying: 0
   squashAndStretchCurve:
@@ -105,7 +106,7 @@ GameObject:
   - component: {fileID: 5381452486881292375}
   m_Layer: 0
   m_Name: Player_Graphics
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,7 +120,7 @@ Transform:
   m_GameObject: {fileID: 2947187557085597976}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.215, y: 0.055, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -138,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notes: Idle anim
+  Player: {fileID: 8397047256095260017}
   transformToAffect: {fileID: 2751490750670311521}
   axisToAffect: 2
   animationDuration: 1
@@ -261,7 +263,7 @@ Transform:
   m_GameObject: {fileID: 3271588327797025874}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.54, y: -0, z: 0}
+  m_LocalPosition: {x: 0.56, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -328,7 +330,7 @@ Transform:
   m_GameObject: {fileID: 8397047256095260017}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -474,6 +476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   airSpeed: 50
+  facingRight: 1
   groundCheck: {fileID: 8397047255048113365}
   checkRadius: 0.1
   whatIsGround:
@@ -493,6 +496,7 @@ MonoBehaviour:
   groundDrag: 10
   airDrag: 5
   jumpNoise: {fileID: 8300000, guid: 39e815db8f7692a44ba7653e4d249281, type: 3}
+  land_anim_object: {fileID: 1796143966257947772}
   whatIsLadder:
     serializedVersion: 2
     m_Bits: 1024
@@ -561,6 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notes: 
+  Player: {fileID: 8397047256095260017}
   transformToAffect: {fileID: 8397047256095260028}
   axisToAffect: 2
   animationDuration: 0.5
