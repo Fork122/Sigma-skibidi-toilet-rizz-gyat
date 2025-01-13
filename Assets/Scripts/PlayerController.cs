@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
     public GameObject deathZone;
     public Vector3 deathZonePos;
 
-    
+    private Rigidbody2D platformRb;
     public GameObject item_with_sr;
     // Start is called before the first frame update
     void Start()
@@ -329,6 +329,20 @@ public class PlayerController : MonoBehaviour
             transform.position = RespawnPoint;
             RemoveControls(true);
         }
+        if(collision.gameObject.CompareTag("Platform"))
+        {
+            platformRb = collision.gameObject.GetComponent<Rigidbody2D>();
+            //myRb.velocity = platformRb.velocity;
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Platform"))
+        {
+            //myRb.velocity = platformRb.velocity;
+            transform.position += new Vector3(platformRb.velocity.x, platformRb.velocity.y, 0) * Time.fixedDeltaTime;
+        }
+
     }
     public void RemoveControls(bool bol)
     {
