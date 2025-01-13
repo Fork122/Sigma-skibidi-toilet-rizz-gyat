@@ -42,6 +42,7 @@ public class Camerachanger : MonoBehaviour
     }
     void FixedUpdate()
     {
+        
         // checks if player has gotten into a new cheakpoint
         foreach (RespawnPoint RP in FindObjectsOfType<RespawnPoint>())
         {
@@ -80,7 +81,8 @@ public class Camerachanger : MonoBehaviour
             Vector3 tempVar = Vector3.Lerp(camSizeStartPos, camSizeEndPos, percentageCompleate);
             cam.orthographicSize = tempVar.x;
             transform.position = Vector3.Lerp(startPos, targetPos, percentageCompleate);
-            
+
+
             // Resets the cameras screen bounds and the deathzone
             playerController.screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
             playerController.deathZonePos = new Vector3(Camera.main.transform.position.x, (Camera.main.transform.position.y * 2) + -playerController.screenBounds.y - 1, Camera.main.transform.position.z);
