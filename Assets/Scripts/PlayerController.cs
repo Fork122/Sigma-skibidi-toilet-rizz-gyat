@@ -95,7 +95,8 @@ public class PlayerController : MonoBehaviour
         jumps = extraJumps;
 
         RespawnPoint = transform.position;
-        
+        myRb.drag = airDrag;
+        RemoveControls(true);
         if (land_anim_object == null)
             land_anim_object = this.gameObject;
     }
@@ -119,6 +120,7 @@ public class PlayerController : MonoBehaviour
         // Player Controller Related
         if (respawning)
         {
+            myRb.drag = airDrag;
             return;
         }
         moveInputH = Input.GetAxisRaw("Horizontal");
@@ -325,6 +327,7 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
+            myRb.drag = airDrag;
             myRb.velocity = Vector2.zero;
             transform.position = RespawnPoint;
             RemoveControls(true);
