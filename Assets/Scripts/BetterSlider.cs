@@ -70,3 +70,5 @@ public class BetterSlider : MonoBehaviour
             time += Time.deltaTime;
         }
     }
+}
+    
