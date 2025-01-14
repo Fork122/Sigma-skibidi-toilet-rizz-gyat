@@ -57,8 +57,8 @@ public class Slider : MonoBehaviour
             time = Time.time;
             // Lerp durration related
 
-            float percentageComplete = (time - startTime) / duration;
-            transform.position = Vector3.Lerp(position, dest, percentageComplete);
+            //float percentageComplete = (time - startTime) / duration;
+            //transform.position = Vector3.Lerp(position, dest, percentageComplete);
             Vector3 toddestination = dest - transform.position;
             toddestination.Normalize();
             myRB.velocity = new Vector2(toddestination.x * duration, toddestination.y * duration);
