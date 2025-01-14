@@ -18,7 +18,7 @@ public class Slider : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        //myRB = GetComponent<Rigidbody2D>();
+        myRB = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
     }
 
