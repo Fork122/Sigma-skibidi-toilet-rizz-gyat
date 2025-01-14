@@ -12,21 +12,21 @@ public class Slider : MonoBehaviour
     private float startTime;
     private bool moving = false;
     //new
-    public GameObject player;
-    private bool onBlock = false;
-    private Rigidbody2D myRB;
+    //public GameObject player;
+    //private bool onBlock = false;
+    //private Rigidbody2D myRB;
     // Start is called before the first frame update
     private void Start()
     {
-        myRB = GetComponent<Rigidbody2D>();
+        //myRB = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player");
+        //if (player == null)
+           // player = GameObject.FindGameObjectWithTag("Player");
        if (transform.position == startPosition && !moving )
         {
             StartCoroutine(move(finalPosition));
@@ -45,10 +45,10 @@ public class Slider : MonoBehaviour
         Vector3 position = transform.position;
 
         //new
-        if (onBlock)
-        {
-            player.transform.SetParent(transform);
-        }
+       // if (onBlock)
+       // {
+       //     player.transform.SetParent(transform);
+        //}
 
 
         while ((dest - transform.position).sqrMagnitude > 0.1f)
@@ -57,20 +57,20 @@ public class Slider : MonoBehaviour
             time = Time.time;
             // Lerp durration related
 
-            //float percentageComplete = (time - startTime) / duration;
-            //transform.position = Vector3.Lerp(position, dest, percentageComplete);
-            Vector3 toddestination = dest - transform.position;
-            toddestination.Normalize();
-            myRB.velocity = new Vector2(toddestination.x * duration, toddestination.y * duration);
+            float percentageComplete = (time - startTime) / duration;
+            transform.position = Vector3.Lerp(position, dest, percentageComplete);
+            //Vector3 toddestination = dest - transform.position;
+            //toddestination.Normalize();
+           // myRB.velocity = new Vector2(toddestination.x * duration, toddestination.y * duration);
         }
         finalPosition = startPosition;
         startPosition = transform.position;
         //new
        
-        if (!onBlock)
-        {
-            player.transform.SetParent(null);
-        }
+        //if (!onBlock)
+        //{
+            //player.transform.SetParent(null);
+        //}
         moving = false;
 
     }

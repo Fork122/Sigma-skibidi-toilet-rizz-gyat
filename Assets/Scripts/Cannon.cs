@@ -7,7 +7,7 @@ public class Cannon : MonoBehaviour
     public GameObject bullet; 
     public Transform firePoint;
     public float interval = 2f; 
-    public float speed = 10f; 
+    public float speed = 20f; 
     public float bulletLifeSpan = 5f; 
 
     private Transform player; 
