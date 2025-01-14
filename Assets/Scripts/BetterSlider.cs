@@ -1,19 +1,26 @@
+// Nathan Anderson
+// 1/14/25
+//Moving Platform Script
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+
 public class BetterSlider : MonoBehaviour
 {
     public Vector3[] positions;
     public float speed;
-    public float pauseTime;
+    
+    //public float pauseTime;
     float time;
     bool isMoving;
 
     // Update is called once per frame
     void Update()
     {
+        // Moves the platform
         if(transform.position == positions[0] && !isMoving)
         {
             StartCoroutine(MoveF(positions));
@@ -38,8 +45,6 @@ public class BetterSlider : MonoBehaviour
                 float percentageCompleate = time / speed;
                 transform.position = Vector3.Lerp(position, dest, percentageCompleate);
             }
-            
-            Pause(pauseTime);
         }
         isMoving = false;
     }
@@ -58,17 +63,8 @@ public class BetterSlider : MonoBehaviour
                 float percentageCompleate = time / speed;
                 transform.position = Vector3.Lerp(position, dest, percentageCompleate);
             }
-            Pause(pauseTime);
         }
         isMoving = false;
-    }
-    void Pause(float pauseTime)
-    {
-        float time = 0;
-        while (time < pauseTime)
-        {
-            time += Time.deltaTime;
-        }
     }
 }
     
