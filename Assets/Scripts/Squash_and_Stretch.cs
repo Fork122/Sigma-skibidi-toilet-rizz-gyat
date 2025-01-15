@@ -135,12 +135,7 @@ namespace ErikHelmers
                StopCoroutine(_squashAndStretchCoroutine);
                if (playsEveryTime && resetToInitialScaleAfterAnimation)
                {
-                   if (pc_script.facingRight)
-                       transformToAffect.localScale = _initialScaleVector;
-                   else
-                   {
-                       transformToAffect.localScale = new Vector3(_initialScaleVector.x *-1, _initialScaleVector.y, _initialScaleVector.z);
-                   }
+                   transformToAffect.localScale = _initialScaleVector;
                }
            }
 
@@ -203,24 +198,14 @@ namespace ErikHelmers
                     else
                         modifiedScale.z = originalScale.z / remappedValue;
                     
-                    if (pc_script.facingRight)
-                        transformToAffect.localScale = modifiedScale;
-                    else
-                    {
-                        transformToAffect.localScale = new Vector3(modifiedScale.x *-1, modifiedScale.y, modifiedScale.z);
-                    }
+                    transformToAffect.localScale = modifiedScale;
 
                     yield return null;
                 }
 
                 if (resetToInitialScaleAfterAnimation)
                 {
-                    if (pc_script.facingRight)
-                        transformToAffect.localScale = originalScale;
-                    else
-                    {
-                        transformToAffect.localScale = new Vector3(originalScale.x * -1, originalScale.y, originalScale.z);
-                    }
+                    transformToAffect.localScale = originalScale;
                 }
                 
                 if (looping)

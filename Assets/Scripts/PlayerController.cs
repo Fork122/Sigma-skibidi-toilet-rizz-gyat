@@ -35,7 +35,9 @@ public class PlayerController : MonoBehaviour
 
     //things for wall checking
     private bool istouchingwall = false;
+    private bool rightwalltouch = true;
     public Transform wallcheck;
+    public Transform wallcheckL;
     public float wallcheckRadius;
     public LayerMask whatIsWall;
     public float wall_slide_drag;
@@ -170,22 +172,24 @@ public class PlayerController : MonoBehaviour
         {
             myAud.PlayOneShot(jumpNoise);
             myRb.drag = airDrag;
+            /*
             if ((myRb.velocity.x < 0 && moveInputH > 0) || (myRb.velocity.x > 0 && moveInputH < 0))
             {
                 myRb.velocity = (Vector2.up * jumpForce);
-            }
-            else
+            }*/
+            //else
             {
-                if (facingRight == false)
+                if (rightwalltouch == false)
                 {
                     //this.gameObject.GetComponent<SquashAndStretch>().CheckForAndStartCoroutine();
                     myRb.velocity = (Vector2.up * jumpForce) + new Vector2(wall_jump_force, 0);
                 }
-                else if (facingRight)
+                else if (rightwalltouch)
                 {
                     //this.gameObject.GetComponent<SquashAndStretch>().CheckForAndStartCoroutine();
                     myRb.velocity = (Vector2.up * jumpForce) - new Vector2(wall_jump_force, 0);
                 }
+                //Flip();
             }
             jumpPressed = true;
         }
@@ -234,7 +238,16 @@ public class PlayerController : MonoBehaviour
         //check for ground
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
-        istouchingwall = Physics2D.OverlapCircle(wallcheck.position, wallcheckRadius, whatIsWall);
+        if (myRb.velocity.x < 0)
+        {
+            istouchingwall = Physics2D.OverlapCircle(wallcheckL.position, wallcheckRadius, whatIsWall);
+            rightwalltouch = false;
+        }
+        else if (myRb.velocity.x > 0)
+        {
+            istouchingwall = Physics2D.OverlapCircle(wallcheck.position, wallcheckRadius, whatIsWall);
+            rightwalltouch = true;
+        }
         if (respawning)
         {
             if (isGrounded)
@@ -289,15 +302,16 @@ public class PlayerController : MonoBehaviour
             myRb.AddForce(new Vector2(moveInputH * airSpeed  , 0));
         }
         //check if we need to flip the player direction
+        /*
         if (facingRight == false && moveInputH > 0)
             Flip();
         else if(facingRight == true && moveInputH < 0)
         {
             Flip();
-        }
+        }*/
         if (istouchingwall)
         {
-            if (facingRight)
+            if (rightwalltouch)
             {
                 //it is facing right
                 if (Input.GetAxisRaw("Horizontal") > 0)
@@ -306,7 +320,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            else if (!facingRight)
+            else if (!rightwalltouch)
             {
                 //it is facing left
                 if (Input.GetAxisRaw("Horizontal") < 0)
