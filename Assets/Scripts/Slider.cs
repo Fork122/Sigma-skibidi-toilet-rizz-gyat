@@ -51,7 +51,7 @@ public class Slider : MonoBehaviour
        }
 
 
-        while ((dest - transform.position).sqrMagnitude > 0.1f)
+        while ((dest - transform.position).sqrMagnitude > 0.001f)
         {
             yield return null;
             time = Time.time;
