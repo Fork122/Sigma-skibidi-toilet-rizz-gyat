@@ -516,7 +516,7 @@ MonoBehaviour:
     m_Bits: 1280
   wallcheck: {fileID: 7520813228153033190}
   wallcheckL: {fileID: 3972596150198972883}
-  wallcheckRadius: 0.1
+  wallcheckRadius: 0.2
   whatIsWall:
     serializedVersion: 2
     m_Bits: 2304
