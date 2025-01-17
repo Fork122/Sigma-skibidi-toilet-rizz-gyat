@@ -60,6 +60,7 @@ public class PauseMenu1 : MonoBehaviour
     */
     public void MainMenu()
     {
+        Resume();
         SceneManager.LoadScene("Level Select");
     }
     public void QuitGame()
@@ -67,11 +68,15 @@ public class PauseMenu1 : MonoBehaviour
         Debug.Log("Quitting Game...");
         Application.Quit();
     }
-/*
+
     public void ResetLevel()
     {
-        //make it go back to checkpoint 0
-        SceneManager.LoadScene(SceneManager.GetActiveScene());
+        //Scene currentScene = SceneManager.GetActiveScene();
+        // string sceneName = currentScene.name;
+        Resume();
+        string scene = SceneManager.GetActiveScene().name;
+        SceneManager.UnloadScene(scene);
+        SceneManager.LoadScene(scene);
     }
-*/
+
 }
