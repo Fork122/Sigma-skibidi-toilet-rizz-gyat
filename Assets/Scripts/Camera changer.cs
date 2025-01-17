@@ -1,3 +1,10 @@
+/*
+ * Nathan Anderson
+ * 1/17/25
+ * Moves the camera
+ */
+
+
 using System;
 using System.Collections;
 using System.Collections.Generic;

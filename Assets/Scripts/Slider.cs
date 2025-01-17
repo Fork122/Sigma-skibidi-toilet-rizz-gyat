@@ -6,7 +6,7 @@ public class Slider : MonoBehaviour
 {
     public Vector3 finalPosition;
     private Vector3 startPosition;
-    public float duration = 2f;
+    public float speed = 2f;
     public float pauseDuration;
     private float time;
     private float startTime;
@@ -51,7 +51,7 @@ public class Slider : MonoBehaviour
        }
 
 
-        while ((dest - transform.position).sqrMagnitude > 0.001f)
+        while ((dest - transform.position).sqrMagnitude > 0.00001f)
         {
             yield return null;
             time = Time.time;
@@ -61,7 +61,7 @@ public class Slider : MonoBehaviour
             //transform.position = Vector3.Lerp(position, dest, percentageComplete);
             Vector3 toddestination = dest - transform.position;
             toddestination.Normalize();
-            myRB.velocity = new Vector2(toddestination.x * duration, toddestination.y * duration);
+            myRB.velocity = new Vector2(toddestination.x * speed, toddestination.y * speed);
         }
         finalPosition = startPosition;
         startPosition = transform.position;

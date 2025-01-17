@@ -1,3 +1,10 @@
+/*
+ * Nathan Anderson
+ * 1/17/25
+ * The main ability for the game
+ */
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +22,7 @@ public class Ability : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // grabs all needed variables and sets the colors of the boxes corectly
         layer = gameObject.layer;
         if (spriteRenderer == null)
         {
@@ -38,10 +46,13 @@ public class Ability : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // delay to not allow switchig super fast
         if (timer <= switch_cooldown)
         {
             timer += Time.deltaTime;
         }
+
+        // Gets user input to activate the ability
         else if (Input.GetButtonUp("Interact"))
         {
 
