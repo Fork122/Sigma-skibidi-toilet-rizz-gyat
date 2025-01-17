@@ -1,6 +1,12 @@
 // Nathan Anderson
 // 1/9/25
 // Changes the gameObject on and off for a defined duration
+/*
+ * Nathan Anderson
+ * 1/17/25
+ * Turns on and of a boxcollider  for a set duration
+ */
+
 
 using System.Collections;
 using System.Collections.Generic;
@@ -33,6 +39,7 @@ public class Flicker : MonoBehaviour
     // changes the gameobject on and off
     void Update()
     {
+        // code for time when off
         if (boxCollider.isTrigger)
         {
             if (time < activeDuration)
@@ -58,6 +65,7 @@ public class Flicker : MonoBehaviour
                 }
             }
         }
+        // code for time when on
         else
         {
             if (time < inactiveDuration)

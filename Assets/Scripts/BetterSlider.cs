@@ -1,6 +1,6 @@
 // Nathan Anderson
 // 1/14/25
-//Moving Platform Script
+// Moving Platform Script
 
 using System.Collections;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ public class BetterSlider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Moves the platform
+        // Moves the platform with Corutines
         if(transform.position == positions[0] && !isMoving)
         {
             StartCoroutine(MoveF(positions));
@@ -30,6 +30,7 @@ public class BetterSlider : MonoBehaviour
             StartCoroutine(MoveB(positions));
         }
     }
+    // Moves to the destinations forwards n the array
     IEnumerator MoveF(Vector3[] dests)
     {
         isMoving = true;
@@ -48,6 +49,7 @@ public class BetterSlider : MonoBehaviour
         }
         isMoving = false;
     }
+    // moves to the destinations backwards in the array
     IEnumerator MoveB(Vector3[] dests)
     {
         isMoving = true;
