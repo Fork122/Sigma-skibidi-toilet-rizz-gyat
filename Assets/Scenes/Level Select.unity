@@ -1842,7 +1842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6abc98311a7a01947aebd0a2495c444c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelToLoad: Erik_lvl_2
+  LevelToLoad: HARD
 --- !u!1 &703605792
 GameObject:
   m_ObjectHideFlags: 0
@@ -3599,7 +3599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6abc98311a7a01947aebd0a2495c444c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelToLoad: Nathan's Level
+  LevelToLoad: IMPOSSIBLE
 --- !u!1 &1488288363
 GameObject:
   m_ObjectHideFlags: 0
@@ -3975,7 +3975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6abc98311a7a01947aebd0a2495c444c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelToLoad: idans level -1st
+  LevelToLoad: NORMAL
 --- !u!1 &1686955031
 GameObject:
   m_ObjectHideFlags: 0
