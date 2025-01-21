@@ -339,7 +339,7 @@ PrefabInstance:
     - target: {fileID: 8078156801103953341, guid: 615fca94e3b6ef04b90d5d3ed5c270b3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8078156801103953341, guid: 615fca94e3b6ef04b90d5d3ed5c270b3,
         type: 3}
@@ -355,8 +355,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7806682004418710100, guid: 54b01999deac29045ad5f8cb6a2b3a79,
-        type: 3}
+      objectReference: {fileID: 382508446}
     - target: {fileID: 8078156801103953341, guid: 615fca94e3b6ef04b90d5d3ed5c270b3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -371,7 +370,7 @@ PrefabInstance:
     - target: {fileID: 8078156801103953341, guid: 615fca94e3b6ef04b90d5d3ed5c270b3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LevelLoad
+      value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 8078156801103953341, guid: 615fca94e3b6ef04b90d5d3ed5c270b3,
         type: 3}
@@ -381,7 +380,7 @@ PrefabInstance:
     - target: {fileID: 8078156801103953341, guid: 615fca94e3b6ef04b90d5d3ed5c270b3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: StartButton, Assembly-CSharp
+      value: PauseMenu1, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8078156801103953341, guid: 615fca94e3b6ef04b90d5d3ed5c270b3,
         type: 3}
@@ -458,10 +457,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 382508445}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6abc98311a7a01947aebd0a2495c444c, type: 3}
+  m_Script: {fileID: 11500000, guid: 699f536ff9653404cbbd98c1fa2097fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelToLoad: Level Select
+  pauseMenuUI: {fileID: 1971115763}
 --- !u!1001 &1140965088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -670,6 +669,21 @@ PrefabInstance:
       propertyPath: m_Colors.m_HighlightedColor.a
       value: 0.09803922
       objectReference: {fileID: 0}
+    - target: {fileID: 8078156801103953341, guid: 615fca94e3b6ef04b90d5d3ed5c270b3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1140965091}
+    - target: {fileID: 8078156801103953341, guid: 615fca94e3b6ef04b90d5d3ed5c270b3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8078156801103953341, guid: 615fca94e3b6ef04b90d5d3ed5c270b3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu1, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8078156802848909349, guid: 615fca94e3b6ef04b90d5d3ed5c270b3,
         type: 3}
       propertyPath: m_text
@@ -713,7 +727,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8078156801103953280, guid: 615fca94e3b6ef04b90d5d3ed5c270b3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1140965091}
   m_SourcePrefab: {fileID: 100100000, guid: 615fca94e3b6ef04b90d5d3ed5c270b3, type: 3}
 --- !u!224 &1140965089 stripped
 RectTransform:
@@ -721,6 +739,25 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1140965088}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1140965090 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8078156801103953280, guid: 615fca94e3b6ef04b90d5d3ed5c270b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1140965088}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1140965091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140965090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699f536ff9653404cbbd98c1fa2097fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 1971115763}
 --- !u!1 &1153545975
 GameObject:
   m_ObjectHideFlags: 0
