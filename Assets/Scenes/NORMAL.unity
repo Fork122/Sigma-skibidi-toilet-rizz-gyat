@@ -12101,6 +12101,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Finish
       objectReference: {fileID: 0}
+    - target: {fileID: 6297727617605684695, guid: 7e2b5849e69cd67469d9739b2d815c66,
+        type: 3}
+      propertyPath: LevelToLoad
+      value: EndScene_normal
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
