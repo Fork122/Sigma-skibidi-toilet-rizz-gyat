@@ -1,3 +1,8 @@
+/*
+ * Name: Idan Shaviner
+ * Date: 1/21/25
+ * Desc: Cannon code for turret thing idk
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

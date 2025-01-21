@@ -1,3 +1,9 @@
+/*
+ * Name: Idan Shaviner
+ * Date: 1/21/25
+ * Desc: A sliding platform to move the play idk
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,7 +57,7 @@ public class Slider : MonoBehaviour
        }
 
 
-        while ((dest - transform.position).sqrMagnitude > 0.00001f)
+        while ((dest - transform.position).sqrMagnitude > 0.001f)
         {
             yield return null;
             time = Time.time;
