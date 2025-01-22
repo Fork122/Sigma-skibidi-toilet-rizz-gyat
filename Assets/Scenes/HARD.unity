@@ -16194,7 +16194,7 @@ PrefabInstance:
     - target: {fileID: 3541681161798143752, guid: abe4d1f4b05bd5d43a444c2f4f412f45,
         type: 3}
       propertyPath: offset
-      value: 35
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3541681161798143752, guid: abe4d1f4b05bd5d43a444c2f4f412f45,
         type: 3}
