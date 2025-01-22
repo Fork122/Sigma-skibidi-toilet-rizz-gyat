@@ -3090,6 +3090,11 @@ PrefabInstance:
       propertyPath: deathZone
       value: 
       objectReference: {fileID: 1737170266}
+    - target: {fileID: 8397047256095260029, guid: e32040e6322592942802c17c9ad76122,
+        type: 3}
+      propertyPath: jumpBuffer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

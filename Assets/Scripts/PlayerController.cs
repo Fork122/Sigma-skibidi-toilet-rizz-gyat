@@ -4,6 +4,7 @@
  * Description: This should be added to the player in a simple 2D platformer 
  * *************************************/
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ErikHelmers;
@@ -41,8 +42,9 @@ public class PlayerController : MonoBehaviour
     public float wallcheckRadius;
     public LayerMask whatIsWall;
     public float wall_slide_drag;
-    
+
     //jump things
+    public float jumpBuffer = 0.1f;
     public int extraJumps = 1;
     private int jumps;
     public float jumpForce;
@@ -236,7 +238,15 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //check for ground
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        if (isGroundedLastFrame && isGrounded == false)
+        {
+            StartCoroutine(Buffer(jumpBuffer));
+        }
+        else
+        {
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        }
+        
 
         if (myRb.velocity.x < 0)
         {
@@ -365,5 +375,14 @@ public class PlayerController : MonoBehaviour
     {
         respawning = bol;
     }
-
+    IEnumerator Buffer(float buffer)
+    {
+            float time = 0;
+            while (time < buffer)
+            {
+                yield return null;
+                time += Time.deltaTime;
+            }
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+    }
 }
