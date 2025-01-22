@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5048cf67c4fe645db95714db3a3a69de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
+  bullet: {fileID: 238760166260527677, guid: 691664e4ff8ac488e891f71eca3c4edf, type: 3}
   firePoint: {fileID: 6167689598439393427}
   interval: 2
   speed: 10
