@@ -23,7 +23,7 @@ public class PauseMenu1 : MonoBehaviour
    */
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetButtonDown("Pause"))
         {
             if (GameIsPaused)
             {
