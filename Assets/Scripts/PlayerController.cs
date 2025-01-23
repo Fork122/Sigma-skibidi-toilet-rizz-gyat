@@ -14,7 +14,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-
+    float time = 0;
     bool respawning = false;
 
     //speed and movement variables
@@ -238,7 +238,21 @@ public class PlayerController : MonoBehaviour
     // FixedUpdate is called once per physics frame
     void FixedUpdate()
     {
+        if (isGroundedLastFrame == true && Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround) == false)
+        {
+            bufferBool = true;
+        }
         //check for ground
+        if (time < jumpBuffer && bufferBool)
+        {
+            time += Time.deltaTime;
+        } else
+        {
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+            bufferBool = false;
+            time = 0;
+        }
+        /*
         if (isGroundedLastFrame == true && isGrounded == false && bufferBool == false)
         {
             StartCoroutine(Buffer(jumpBuffer));
@@ -247,7 +261,7 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         }
-        
+        */
 
         if (myRb.velocity.x < 0)
         {
