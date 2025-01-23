@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
     //jump things
     public float jumpBuffer = 0.1f;
+    private bool bufferBool = false;
     public int extraJumps = 1;
     private int jumps;
     public float jumpForce;
@@ -238,11 +239,11 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //check for ground
-        if (isGroundedLastFrame && isGrounded == false)
+        if (isGroundedLastFrame == true && isGrounded == false && bufferBool == false)
         {
             StartCoroutine(Buffer(jumpBuffer));
         }
-        else
+        else if(bufferBool == false)
         {
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         }
@@ -377,6 +378,8 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator Buffer(float buffer)
     {
+            bufferBool = true;
+            isGrounded = true;
             float time = 0;
             while (time < buffer)
             {
@@ -384,5 +387,6 @@ public class PlayerController : MonoBehaviour
                 time += Time.deltaTime;
             }
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        bufferBool = false;
     }
 }
