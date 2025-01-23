@@ -246,6 +246,10 @@ public class PlayerController : MonoBehaviour
         if (time < jumpBuffer && bufferBool)
         {
             time += Time.deltaTime;
+            if (jumps > 0)
+            {
+                time = 100;
+            }
         } else
         {
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
