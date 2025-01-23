@@ -521,6 +521,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2304
   wall_slide_drag: 20
+  jumpBuffer: 0.05
   extraJumps: 0
   jumpForce: 20
   wall_jump_force: 10
