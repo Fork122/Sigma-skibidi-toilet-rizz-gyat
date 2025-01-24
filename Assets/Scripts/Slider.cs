@@ -31,30 +31,32 @@ public class Slider : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player");
+      //  if (player == null)
+       //     player = GameObject.FindGameObjectWithTag("Player");
        if (transform.position == startPosition && !moving )
-        {
+        { 
+            moving = true;
             StartCoroutine(move(finalPosition));
 
 
         }
        else if(!moving)
         {
+            moving = true;
             StartCoroutine(move(startPosition));
         }
     }
     IEnumerator move(Vector3 dest)
     {
-        moving = true;
+        
         startTime = Time.time;
         Vector3 position = transform.position;
 
         //new
-        if (onBlock)
-        {
-            player.transform.SetParent(transform);
-       }
+       // if (onBlock)
+       // {
+      //      player.transform.SetParent(transform);
+      // }
 
 
         while ((dest - transform.position).sqrMagnitude > 0.001f)
@@ -69,15 +71,17 @@ public class Slider : MonoBehaviour
             toddestination.Normalize();
             myRB.velocity = new Vector2(toddestination.x * speed, toddestination.y * speed);
         }
+
+        transform.position = finalPosition;
         finalPosition = startPosition;
         startPosition = transform.position;
         //new
-       
-        if (!onBlock)
-        {
-            player.transform.SetParent(null);
-        }
-        moving = false;
+       moving = false;
+     // //  if (!onBlock)
+     //   {
+     //       player.transform.SetParent(null);
+     //   }
+        
 
     }
     //new

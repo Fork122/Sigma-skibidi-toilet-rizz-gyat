@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="ce069776-91a3-4c89-8da5-77105eca90c5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Sigma-skibidi-toilet-rizz-gyat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Sigma-skibidi-toilet-rizz-gyat/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PauseMenu1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PauseMenu1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EndScene_hard.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EndScene_hard.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EndScene_impossible.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EndScene_impossible.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EndScene_normal.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EndScene_normal.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/HARD.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/HARD.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/IMPOSSIBLE.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/IMPOSSIBLE.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NORMAL.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NORMAL.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Slider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Slider.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +99,7 @@
       <workItem from="1737131681412" duration="250000" />
       <workItem from="1737476236145" duration="1537000" />
       <workItem from="1737649613245" duration="78000" />
+      <workItem from="1737733142371" duration="356000" />
     </task>
     <servers />
   </component>
