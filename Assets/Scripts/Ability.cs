@@ -52,7 +52,7 @@ public class Ability : MonoBehaviour
         }
 
         // Gets user input to activate the ability
-        else if (Input.GetButtonUp("Interact"))
+        else if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetButtonUp("Interact"))
         {
 
             timer = 0;
